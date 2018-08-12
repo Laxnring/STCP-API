@@ -1,6 +1,5 @@
 import os, sys
 import requests
-import ast
 
 link = "www.stcp.pt/pt/widget/post.php?"
 uid = "d72242190a22274321cacf9eadc7ec5f"
@@ -64,7 +63,8 @@ def getTempos(paragem_duo):
         tempo = passagens[3*(i+2)][3:15]
         if "a passar" in tempo:
             tempo = 0 
-        tempo = int(tempo.split("-")[1].split("min")[0][1:])
+        else:
+            tempo = int(tempo.split("-")[1].split("min")[0][1:3])
 
         linha_trio = [linha, destino, tempo]
         autocarros.append(linha_trio)
@@ -75,5 +75,13 @@ def getTempos(paragem_duo):
     
     return autocarros
 
-autocarros = getTempos(["CDF1", "CEDOFEITA"])
-print(autocarros)
+TOKEN = "593680653:AAFCCNuwh_ECOxjzygcqLw-MGbIwu6hAtDE"
+bot = telegram.Bot(token = TOKEN)
+updater = Updater(token = TOKEN)
+dispatcher = updater.dispatcher
+
+def message(chat_id, text):
+    bot.send_message(chat_id=chat_id, text=text)
+
+def comandos(bot, update):
+    chat_id = update.message.chat_id
