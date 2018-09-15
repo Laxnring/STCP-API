@@ -39,7 +39,8 @@ def getParagens(linha):
 
     return paragens
 
-paragens = getParagens("203")
+paragens = getParagens("502")
+print(paragens)
 
 # Obter página relativa a uma paragem
 def getTempos(paragem_duo):
@@ -75,13 +76,4 @@ def getTempos(paragem_duo):
     
     return autocarros
 
-TOKEN = "593680653:AAFCCNuwh_ECOxjzygcqLw-MGbIwu6hAtDE"
-bot = telegram.Bot(token = TOKEN)
-updater = Updater(token = TOKEN)
-dispatcher = updater.dispatcher
-
-def message(chat_id, text):
-    bot.send_message(chat_id=chat_id, text=text)
-
-def comandos(bot, update):
-    chat_id = update.message.chat_id
+print(getTempos(paragens[1]))
