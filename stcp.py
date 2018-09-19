@@ -16,13 +16,13 @@ def getLinhas():
     for i in range(0, num_linhas-1):
         linha = response.split('"code": ')[i+1]
         linhas.append(linha[:4].strip('"').strip(","))
-    
+    linhas.remove('1"')
     return linhas
 
 linhas = getLinhas()
 
-def getParagens(linha):
-    request_url = "http://www.stcp.pt/pt/itinerarium/callservice.php?action=linestops&lcode="+ linha + "&ldir=1"
+def getParagens(linha, ldir):
+    request_url = "http://www.stcp.pt/pt/itinerarium/callservice.php?action=linestops&lcode="+ linha + "&ldir=" + str(ldir)
     r = requests.get(request_url)
     response = r.content.decode()
 
@@ -36,20 +36,16 @@ def getParagens(linha):
         paragem = paragem[:5].strip('"').strip(",")
         paragem_duo = [paragem, np]
         paragens.append(paragem_duo)
-
     return paragens
 
-paragens = getParagens("502")
-print(paragens)
+paragens = getParagens("8M", 0)
 
 # Obter página relativa a uma paragem
 def getTempos(paragem_duo):
     paragem = paragem_duo[0]
     np = paragem_duo[1]
-
     request = "http://" + link + "uid=" + uid + "&" + "np=" + np + "&" + "paragem=" + paragem + "&" + "submete=" + submete
     
-    print(request)
     r = requests.get(request)
  
     response = r.content.decode().rstrip().split()
@@ -76,4 +72,3 @@ def getTempos(paragem_duo):
     
     return autocarros
 
-print(getTempos(paragens[1]))
