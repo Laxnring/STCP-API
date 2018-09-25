@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import os, sys
 import requests
 
@@ -10,7 +12,6 @@ def getLinhas():
     request_url = "http://www.stcp.pt/pt/itinerarium/callservice.php?action=lineslist&service=1" 
     r = requests.get(request_url)
     response = r.content.decode()
-
     linhas = []
     num_linhas = int(response.split('"recordsReturned": ')[1][:2])
     for i in range(0, num_linhas-1):
@@ -38,9 +39,9 @@ def getParagens(linha, ldir):
         paragens.append(paragem_duo)
     return paragens
 
-paragens = getParagens("8M", 0)
-
-# Obter página relativa a uma paragem
+paragens = getParagens("203", 0)
+print(paragens)
+# Obter pagina relativa a uma paragem
 def getTempos(paragem_duo):
     paragem = paragem_duo[0]
     np = paragem_duo[1]
@@ -72,3 +73,5 @@ def getTempos(paragem_duo):
     
     return autocarros
 
+
+print(getTempos(paragens[10]))
