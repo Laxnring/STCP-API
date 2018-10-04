@@ -59,7 +59,13 @@ def autocarro_passou(stops1):
     while (size_of_db < 500):
         i = 0
         for stop in stops1:
-            tempo = stcp.getTempos(stop)
+            tempo = None
+            while tempo is None:
+                try:
+                    tempo = stcp.getTempos(stop)
+                except:
+                    pass
+
             tempos.append(tempo)
             #print(tempo)
             #print(stop)
@@ -76,10 +82,7 @@ def autocarro_passou(stops1):
                         if tempo_old[j][0] == tempo[k][0] and tempo_old[j][2] >= tempo[k][2]-2:
                             flag = 0
                     if flag != 0:
-                        print(tempo_old)
-                        print(tempo)
                         insert_into_db(conn, tempo_old[j][0], stop[0], str(datetime.datetime.now().replace(microsecond=0)))
-                        print("--------------------------- WORKS! ------------------------")
 
             i = i + 1
         tempos_old = tempos

@@ -40,7 +40,7 @@ def getParagens(linha, ldir):
     return paragens
 
 paragens = getParagens("203", 0)
-print(paragens)
+#print(paragens)
 # Obter pagina relativa a uma paragem
 def getTempos(paragem_duo):
     paragem = paragem_duo[0]
@@ -74,4 +74,4 @@ def getTempos(paragem_duo):
     return autocarros
 
 
-print(getTempos(paragens[10]))
+#print(getTempos(paragens[10]))
