@@ -89,6 +89,7 @@ def autocarro_passou(stops1):
         tempos = []
 
 if __name__ == '__main__':
+    # Não usar multiprocessamento, porque é impossível todos os processos escreverem para a db
     array1 = paragens[0:int(len(paragens)/4)]
     array2 = paragens[int(len(paragens)/4):int(len(paragens)/2)]
     array3 = paragens[int(len(paragens)/2):int(len(paragens)/4+len(paragens)/2)]
