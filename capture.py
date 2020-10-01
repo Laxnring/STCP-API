@@ -90,19 +90,20 @@ def autocarro_passou(stops1):
 
 if __name__ == '__main__':
     # Não usar multiprocessamento, porque é impossível todos os processos escreverem para a db
-    array1 = paragens[0:int(len(paragens)/4)]
-    array2 = paragens[int(len(paragens)/4):int(len(paragens)/2)]
-    array3 = paragens[int(len(paragens)/2):int(len(paragens)/4+len(paragens)/2)]
-    array4 = paragens[int(len(paragens)/4+len(paragens)/2):len(paragens)]
-    p1 = Process(target=autocarro_passou, args=(array1, ))
-    p2 = Process(target=autocarro_passou, args=(array2,))
-    p3 = Process(target=autocarro_passou, args=(array3,))
-    p4 = Process(target=autocarro_passou, args=(array4,))
-    p1.start()
-    p2.start()
-    p3.start()
-    p4.start()
-    p1.join()
-    p2.join()
-    p3.join()
-    p4.join()
+    #array1 = paragens[0:int(len(paragens)/4)]
+    #array2 = paragens[int(len(paragens)/4):int(len(paragens)/2)]
+    #array3 = paragens[int(len(paragens)/2):int(len(paragens)/4+len(paragens)/2)]
+    #array4 = paragens[int(len(paragens)/4+len(paragens)/2):len(paragens)]
+    #p1 = Process(target=autocarro_passou, args=(array1, ))
+    #p2 = Process(target=autocarro_passou, args=(array2,))
+    #p3 = Process(target=autocarro_passou, args=(array3,))
+    #p4 = Process(target=autocarro_passou, args=(array4,))
+    #p1.start()
+    #p2.start()
+    #p3.start()
+    #p4.start()
+    #p1.join()
+    #p2.join()
+    #p3.join()
+    #p4.join()
+    autocarro_passou(paragens)
