@@ -39,7 +39,6 @@ def getParagens(linha, ldir):
         paragens.append(paragem_duo)
     return paragens
 
-paragens = getParagens("203", 0)
 #print(paragens)
 # Obter pagina relativa a uma paragem
 def getTempos(paragem_duo):
